@@ -1,0 +1,32 @@
+WHERE digunakan untuk memfilter catatan.
+Ini digunakan untuk mengekstrak hanya catatan-catatan yang memenuhi kondisi tertentu.
+
+WHEREtidak hanya digunakan dalam SELECTpernyataan, tetapi juga digunakan dalam UPDATE, DELETE, dan seterusnya!
+
+SELECT column1, column2, ...
+FROM table_name
+WHERE condition;
+
+contoh:
+    SELECT * FROM Customers
+    WHERE Country='Mexico';
+
+String vs Numerik
+1. SQL memerlukan tanda kutip tunggal di sekitar nilai teks
+2. Numerik tidak boleh diapit tanda kutip
+
+contoh:
+    SELECT * FROM Customers
+    WHERE CustomerID=1;
+
+Operator dalam klausa WHERE
+    Operator	        Description	Example
+    =	                Setara
+    >	                Lebih besar dari
+    <	                Kurang dari
+    >=	                Lebih besar dari atau sama dengan
+    <=	                Kurang dari atau sama dengan
+    <>	                Tidak setara.                                                       Catatan: Dalam beberapa versi SQL, operator ini dapat ditulis sebagai !=
+    BETWEEN	            Antara rentang tertentu
+    LIKE	            Mencari pola
+    IN	                Untuk menentukan beberapa kemungkinan nilai untuk sebuah kolom

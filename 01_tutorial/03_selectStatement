@@ -1,0 +1,8 @@
+SELECT digunakan untuk memilih data dari database.
+
+SELECT column1, column2, ...
+FROM table_name;
+
+Jika ingin mengambil semua kolom, gunakan sintaks SELECT *
+contoh
+SELECT * FROM Customers;

@@ -1,0 +1,21 @@
+SQL adalah bahasa standar untuk menyimpan, memanipulasi dan mengambil data dalam database.
+
+Apa itu SQL:
+    1. SQL adalah singkatan dari Structured Query Language
+    2. Untuk mengakses dan memanipulasi database
+    3. SQL menjadi standar American National Standards Institute (ANSI) pada tahun 1986, dan International Organization for Standardization (ISO) pada tahun 1987
+
+Fungsi SQL:
+    1. SQL dapat mengeksekusi query terhadap database
+    2. SQL dapat mengambil data dari database
+    3. SQL dapat menyisipkan catatan dalam database
+    4. SQL dapat memperbarui catatan dalam database
+    5. SQL dapat menghapus catatan dari database
+    6. SQL dapat membuat database baru
+    7. SQL dapat membuat tabel baru dalam database
+    8. SQL dapat membuat prosedur tersimpan dalam database
+    9. SQL dapat membuat tampilan dalam database
+    10. SQL dapat mengatur izin pada tabel, prosedur, dan tampilan
+
+RDBMS adalah singkatan dari Sistem Manajemen Basis Data Relasional.
+RDBMS adalah dasar untuk SQL, dan untuk semua sistem database modern seperti MS SQL Server, IBM DB2, Oracle, MySQL, dan Microsoft Access.

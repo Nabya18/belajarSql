@@ -1,0 +1,16 @@
+Order By digunakan untuk mengurutkan kumpulan hasil dalam urutan menaik atau menurun.
+1. Default adalah ACS => dari kecil ke besar
+2. Untuk nilai string, ORDER BYkata kunci akan diurutkan berdasarkan abjad
+
+contoh:
+    SELECT * FROM Products
+    ORDER BY Price;
+
+SELECT column1, column2, ...
+FROM table_name
+ORDER BY column1, column2, ... ASC|DESC;
+
+Order By beberapa kolom
+    SELECT * FROM Customers
+    ORDER BY Country, CustomerName;
+Yang berarti mengurutkan berdasarkan negara, jika memiliki nama negara yang sama maka diurutkan berdasarkan nama pelanggan

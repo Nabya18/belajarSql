@@ -1,0 +1,15 @@
+SQL tidak case sensitive
+Beberapa sistem database memerlukan titik koma di akhir setiap pernyataan SQL.
+
+Beberapa perintah penting:
+    1. SELECT                   - mengekstrak data dari database
+    2. UPDATE                   - memperbarui data dalam database
+    3. DELETE                   - menghapus data dari database
+    4. INSERT INTO              - memasukkan data baru ke dalam database
+    5. CREATE DATABASE          - membuat database baru
+    6. ALTER DATABASE           - memodifikasi database
+    7. CREATE TABLE             - membuat tabel baru
+    8. ALTER TABLE              - memodifikasi tabel
+    9. DROP TABLE               - menghapus tabel
+    10. CREATE INDEX            - membuat indeks (kunci pencarian)
+    11. DROP INDEX              - menghapus indeks

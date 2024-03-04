@@ -1,0 +1,10 @@
+SELECT DISTINCTdigunakan untuk mengembalikan hanya nilai yang berbeda (berbeda).
+
+SELECT DISTINCT column1, column2, ...
+FROM table_name;
+
+contoh:
+1. Hitung berbeda
+    SELECT COUNT(DISTINCT Country) FROM Customers;
+2. Contoh menampilkan nama-nama negara yang berbeda
+    SELECT DISTINCT Country FROM Customers;

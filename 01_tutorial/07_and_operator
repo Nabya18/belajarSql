@@ -1,0 +1,28 @@
+Operator AND digunakan untuk memfilter rekaman berdasarkan lebih dari satu kondisi
+dapat juga digunakan untuk klausa WHERE
+
+SELECT column1, column2, ...
+FROM table_name
+WHERE condition1 AND condition2 AND condition3 ...;
+
+contoh:
+    SELECT *
+    FROM Customers
+    WHERE Country = 'Spain' AND CustomerName LIKE 'G%';
+
+contoh:
+    SELECT * FROM Customers
+    WHERE Country = 'Germany'
+    AND City = 'Berlin'
+    AND PostalCode > 1200;
+
+Operator AND menampilkan catatan jika semua kondisinya BENAR.
+Operator OR menampilkan catatan jika salah satu kondisinya BENAR.
+
+Menggabungkan AND dan OR
+    Pastikan menggunakan tanda kurung untuk mendapatkan hasil yang benar.
+    Tanpa tanda kurung, data akan menampilkan semua pelanggan dari Spanyol yang dimulai dengan "G", ditambah semua pelanggan yang dimulai dengan "R" dari seluruh negaranya:
+
+contoh
+    SELECT * FROM Customers
+    WHERE Country = 'Spain' AND (CustomerName LIKE 'G%' OR CustomerName LIKE 'R%');

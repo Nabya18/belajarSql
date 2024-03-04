@@ -1,0 +1,13 @@
+Klausa WHERE dapat berisi satu atau lebih ORoperator.
+Operator OR digunakan untuk memfilter catatan berdasarkan lebih dari satu kondisi
+Setidaknya Satu Kondisi Harus Benar
+
+SELECT column1, column2, ...
+FROM table_name
+WHERE condition1 OR condition2 OR condition3 ...;
+
+contoh
+    SELECT *
+    FROM Customers
+    WHERE Country = 'Germany' OR Country = 'Spain';
+
