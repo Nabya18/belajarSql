@@ -1,0 +1,35 @@
+NOT digunakan bersama dengan operator lain untuk memberikan hasil sebaliknya.
+NOToperator digunakan bersama dengan =operator, namun dapat digunakan bersama dengan operator pembanding dan/atau logika lainnya.
+
+SELECT column1, column2, ...
+FROM table_name
+WHERE NOT condition;
+
+1. NOT
+    contoh: Pilih hanya pelanggan yang BUKAN dari Spanyol
+        SELECT * FROM Customers
+        WHERE NOT Country = 'Spain';
+2. NOT LIKE
+    Pilih pelanggan yang tidak dimulai dengan huruf 'A':
+        SELECT * FROM Customers
+        WHERE CustomerName NOT LIKE 'A%';
+3. NOT BETWEEN
+    Pilih pelanggan dengan ID pelanggan bukan antara 10 dan 60:
+        SELECT * FROM Customers
+        WHERE CustomerID NOT BETWEEN 10 AND 60;
+4. NOT IN
+    Pilih pelanggan yang bukan dari Paris atau London:
+        SELECT * FROM Customers
+        WHERE City NOT IN ('Paris', 'London');
+5. NOT <column> >
+    Pilih pelanggan dengan CustomerId tidak lebih besar dari 50:
+        SELECT * FROM Customers
+        WHERE NOT CustomerID > 50;
+6. NOT <column> <
+    Pilih pelanggan dengan ID Pelanggan tidak kurang dari 50:
+        SELECT * FROM Customers
+        WHERE NOT CustomerId < 50;
+7. !> = menggunakan tanda petik
+    Pilih pelanggan dengan CustomerId tidak lebih besar dari 50:
+        SELECT * FROM Customers
+        WHERE 'CustomerID !> 50';

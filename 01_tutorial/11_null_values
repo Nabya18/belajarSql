@@ -1,0 +1,24 @@
+Nilai NULL adalah bidang tanpa nilai.
+    - Jika bidang dalam tabel bersifat opsional, dimungkinkan untuk menyisipkan catatan baru atau memperbarui catatan tanpa menambahkan nilai ke bidang ini. Kemudian, field tersebut akan disimpan dengan nilai NULL.
+    - Nilai NULL berbeda dengan nilai nol atau bidang yang berisi spasi. Bidang dengan nilai NULL adalah bidang yang dikosongkan selama pembuatan catatan!
+
+Menguji Nilai NULL
+1. operator IS NULL
+    SELECT CustomerName, ContactName, Address
+    FROM Customers
+    WHERE Address IS NULL;
+2. operator IS NOT NULL
+    SELECT CustomerName, ContactName, Address
+    FROM Customers
+    WHERE Address IS NOT NULL;
+
+Sintaks IS NULL
+    SELECT column_names
+    FROM table_name
+    WHERE column_name IS NULL;
+
+Sintaks IS NOT NULL
+    SELECT column_names
+    FROM table_name
+    WHERE column_name IS NOT NULL;
+

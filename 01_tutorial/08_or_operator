@@ -1,6 +1,12 @@
 Klausa WHERE dapat berisi satu atau lebih ORoperator.
-Operator OR digunakan untuk memfilter catatan berdasarkan lebih dari satu kondisi
-Setidaknya Satu Kondisi Harus Benar
+1. Operator OR digunakan untuk memfilter catatan berdasarkan lebih dari satu kondisi
+2. Setidaknya Satu Kondisi Harus Benar
+3. Operator OR menampilkan catatan jika any / salah satu kondisinya BENAR.
+4. Operator AND menampilkan catatan jika all / semua kondisinya BENAR.
+
+Menggabungkan AND dan OR
+1. Pastikan menggunakan tanda kurung untuk mendapatkan hasil yang benar.
+2. Tanpa tanda kurung, pernyataan pilih akan mengembalikan semua
 
 SELECT column1, column2, ...
 FROM table_name
@@ -11,3 +17,15 @@ contoh
     FROM Customers
     WHERE Country = 'Germany' OR Country = 'Spain';
 
+Berikut memilih semua bidang dari Pelanggan yang mana City"Berlin", CustomerNamedimulai dengan huruf "G" atau Country"Norwegia"
+    SELECT * FROM Customers
+    WHERE City = 'Berlin' OR CustomerName LIKE 'G%' OR Country = 'Norway';
+
+Contoh: Pilih semua pelanggan berbahasa Spanyol yang dimulai dengan "G" atau "R":
+    SELECT * FROM Customers
+    WHERE Country = 'Spain' AND (CustomerName LIKE 'G%' OR CustomerName LIKE 'R%');
+
+Contoh:
+Pilih semua pelanggan yang berasal dari Spanyol dan dimulai dengan "G", atau dimulai dengan huruf "R":
+    SELECT * FROM Customers
+    WHERE Country = 'Spain' AND CustomerName LIKE 'G%' OR CustomerName LIKE 'R%';

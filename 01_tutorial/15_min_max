@@ -1,0 +1,15 @@
+MIN() mengembalikan nilai terkecil dari kolom yang dipilih.
+MAX() mengembalikan nilai terbesar dari kolom yang dipilih.
+
+Saat Anda menggunakan MIN()or MAX(), kolom yang dikembalikan akan diberi nama atau secara default.
+Untuk memberi nama baru pada kolom, gunakan kata kunci: MIN(field) MAX(field)AS
+    SELECT MIN(Price) AS SmallestPrice
+    FROM Products;
+
+SELECT MIN(column_name)
+FROM table_name
+WHERE condition;
+
+SELECT MAX(column_name)
+FROM table_name
+WHERE condition;

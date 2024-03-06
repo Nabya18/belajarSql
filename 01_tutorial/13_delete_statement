@@ -1,0 +1,12 @@
+DELETE digunakan untuk menghapus record yang ada dalam sebuah tabel.
+Jika kita menghilangkan WHERE klausa tersebut, semua catatan dalam tabel akan dihapus!
+
+DELETE FROM table_name WHERE condition;
+
+contoh
+    1. Menghapus pelanggan "Alfreds Futterkiste" dari tabel "Pelanggan":
+        DELETE FROM Customers WHERE CustomerName='Alfreds Futterkiste';
+    2. Menghapus semua baris dalam tabel tanpa menghapus tabel.
+        DELETE FROM Customers;
+    3. Menghapus tabel sepenuhnya menggunakan DROP TABLE
+        DROP TABLE Customers;

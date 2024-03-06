@@ -1,0 +1,16 @@
+UPDATE digunakan untuk mengubah catatan yang ada dalam sebuah tabel.
+Jika kita tidak menggunakan WHERE klausa, semua catatan dalam tabel akan diperbarui!
+
+UPDATE table_name
+SET column1 = value1, column2 = value2, ...
+WHERE condition;
+
+contoh
+    1. Memperbarui pelanggan pertama (ID Pelanggan = 1) dengan narahubung baru dan kota baru.
+        UPDATE Customers
+        SET ContactName = 'Alfred Schmidt', City= 'Frankfurt'
+        WHERE CustomerID = 1;
+    2. Memperbarui ContactName menjadi "Juan" untuk semua catatan dengan negara "Meksiko":
+        UPDATE Customers
+        SET ContactName='Juan'
+        WHERE Country='Mexico';

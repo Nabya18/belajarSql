@@ -1,0 +1,22 @@
+INSERT INTO digunakan untuk menyisipkan record baru ke dalam tabel.
+column auto-increment tidak perlu di insert
+1. menentukan nama kolom dan nilai yang mau disisipkan
+    INSERT INTO table_name (column1, column2, column3, ...)
+    VALUES (value1, value2, value3, ...);
+2. tidak menentukan nama kolom dalam kueri SQL. HARUS MEMASTIKAN NILAI SAMA URUTANNYA DENGAN KOLOM
+    INSERT INTO table_name
+    VALUES (value1, value2, value3, ...);
+
+contoh:
+    1. Menyisipkan catatan baru dalam tabel "Pelanggan":
+        INSERT INTO Customers (CustomerName, ContactName, Address, City, PostalCode, Country)
+        VALUES ('Cardinal', 'Tom B. Erichsen', 'Skagen 21', 'Stavanger', '4006', 'Norway');
+    2. Hanya memasukkan data di kolom "Nama Pelanggan", "Kota", dan "Negara":
+        INSERT INTO Customers (CustomerName, City, Country)
+        VALUES ('Cardinal', 'Stavanger', 'Norway');
+    3. Menyisipkan beberapa baris data
+        INSERT INTO Customers (CustomerName, ContactName, Address, City, PostalCode, Country)
+        VALUES
+        ('Cardinal', 'Tom B. Erichsen', 'Skagen 21', 'Stavanger', '4006', 'Norway'),
+        ('Greasy Burger', 'Per Olsen', 'Gateveien 15', 'Sandnes', '4306', 'Norway'),
+        ('Tasty Tee', 'Finn Egan', 'Streetroad 19B', 'Liverpool', 'L1 0AA', 'UK');
