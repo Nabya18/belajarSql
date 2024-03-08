@@ -1,0 +1,31 @@
+COUNT() => mengembalikan jumlah baris yang cocok dengan kriteria tertentu.
+
+SELECT COUNT(column_name)
+FROM table_name
+WHERE condition;
+
+Contoh: Temukan jumlah total produk dalam tabel Products:
+    SELECT COUNT(*)
+    FROM Products;
+
+1. Dengan klausa Where
+    Contoh: Temukan jumlah produk yang Price lebih tinggi dari 20:
+        SELECT COUNT(ProductID)
+        FROM Products
+        WHERE Price > 20;
+
+2. Dengan menentukan nama kolom, nilai NULL tidak dihitung
+    Contoh: Temukan jumlah produk yang ProductNamebukan nol:
+        SELECT COUNT(ProductName)
+        FROM Products;
+
+3. Mengabaikan Duplikat
+    Jika DISTINCTditentukan, baris dengan nilai yang sama untuk kolom tertentu akan dihitung sebagai satu.
+        Contoh: Berapa banyak harga berbeda yang ada dalam Productstabel:
+        SELECT COUNT(DISTINCT Price)
+        FROM Products;
+
+4. Menggunakan alias
+    Contoh: Beri nama kolom "jumlah catatan":
+        SELECT COUNT(*) AS [number of records]
+        FROM Products;

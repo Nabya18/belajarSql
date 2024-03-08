@@ -1,0 +1,33 @@
+Fungsi SUM() => mengembalikan jumlah total kolom numerik.
+
+Contoh: Mengembalikan jumlah semua Quantitybidang dalam OrderDetailstabel:
+    SELECT SUM(Quantity)
+    FROM OrderDetails;
+
+SELECT SUM(column_name)
+FROM table_name
+WHERE condition;
+
+1. Dengan Klausa Where
+    Contoh: Kembalikan jumlah pesanan yang dibuat untuk produk dengan ProductID11:
+        SELECT SUM(Quantity)
+        FROM OrderDetails
+        WHERE ProductId = 11;
+
+2. Dengan Alias
+    Contoh: Beri nama kolom "total":
+        SELECT SUM(Quantity) AS total
+        FROM OrderDetails;
+
+3. SUM() Dengan Ekspresi
+    Jika kita berasumsi bahwa setiap produk dalam OrderDetailskolom berharga 10 dolar, kita dapat mencari total pendapatan dalam dolar dengan mengalikan setiap kuantitas dengan 10
+    Contoh: Gunakan ekspresi di dalam SUM()fungsi:
+        SELECT SUM(Quantity * 10)
+        FROM OrderDetails;
+
+4. Dengan expresi dan left join
+    Kita juga dapat menggabungkan OrderDetailstabel ke Productstabel untuk mengetahui jumlah sebenarnya, daripada berasumsi bahwa jumlahnya adalah 10 dolar:
+    Contoh: Gabung OrderDetailsdengan Products, dan gunakan SUM()untuk mencari jumlah total:
+        SELECT SUM(Price * Quantity)
+        FROM OrderDetails
+        LEFT JOIN Products ON OrderDetails.ProductID = Products.ProductID;

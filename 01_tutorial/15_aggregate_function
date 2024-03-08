@@ -1,0 +1,11 @@
+1. Fungsi agregat adalah fungsi yang melakukan penghitungan pada sekumpulan nilai, dan mengembalikan satu nilai.
+2. Fungsi agregat sering digunakan dengan GROUP BY klausa pernyataan SELECT .
+3. GROUP BY membagi kumpulan hasil menjadi beberapa kelompok nilai dan fungsi agregat dapat digunakan untuk mengembalikan satu nilai untuk setiap kelompok.
+4. Fungsi agregat SQL yang paling umum digunakan adalah:
+    a. MIN()- mengembalikan nilai terkecil dalam kolom yang dipilih
+    b. MAX()- mengembalikan nilai terbesar dalam kolom yang dipilih
+    c. COUNT()- mengembalikan jumlah baris dalam satu set
+    d. SUM()- mengembalikan jumlah total kolom numerik
+    e. AVG()- mengembalikan nilai rata-rata kolom numerik
+
+Fungsi agregat mengabaikan nilai null (kecuali COUNT()).
