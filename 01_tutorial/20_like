@@ -1,0 +1,54 @@
+Operator LIKE => digunakan dalam WHEREklausa untuk mencari pola tertentu dalam suatu kolom.
+dapat menggabungkan sejumlah kondisi menggunakan operator AND atau OR.
+
+Ada dua wildcard yang sering digunakan bersama dengan LIKE operator:
+    1. Tanda persen (%) => mewakili nol, satu, atau beberapa karakter
+    2. Tanda garis bawah (_) => mewakili satu karakter tunggal, bisa berupa karakter atau angka apa pun.
+
+SELECT column1, column2, ...
+FROM table_name
+WHERE columnN LIKE pattern;
+
+1. Contoh: Pilih semua pelanggan yang dimulai dengan huruf "a":
+    SELECT * FROM Customers
+    WHERE CustomerName LIKE 'a%';
+
+2. Contoh: Mengembalikan semua pelanggan dari kota yang dimulai dengan 'L' diikuti dengan satu karakter wildcard, lalu 'nd', lalu dua karakter wildcard:
+    SELECT * FROM Customers
+    WHERE city LIKE 'L_nd__';
+
+3. Contoh: Kembalikan semua pelanggan dari kota yang terdapat huruf 'L':
+    SELECT * FROM Customers
+    WHERE city LIKE '%L%';
+
+4. Contoh: Kembalikan semua pelanggan yang dimulai dengan 'La':
+    SELECT * FROM Customers
+    WHERE CustomerName LIKE 'La%';
+
+5. Contoh: Mengembalikan semua pelanggan yang dimulai dengan 'a' atau dimulai dengan 'b':
+    SELECT * FROM Customers
+    WHERE CustomerName LIKE 'a%' OR CustomerName LIKE 'b%';
+
+6. Contoh: Kembalikan semua pelanggan yang diakhiri dengan 'a':
+    SELECT * FROM Customers
+    WHERE CustomerName LIKE '%a';
+
+7. Contoh: Kembalikan semua pelanggan yang dimulai dengan "b" dan diakhiri dengan "s":
+    SELECT * FROM Customers
+    WHERE CustomerName LIKE 'b%s';
+
+8. Contoh: Kembalikan semua pelanggan yang mengandung frasa 'or'
+    SELECT * FROM Customers
+    WHERE CustomerName LIKE '%or%';
+
+9. Contoh: Menampilkan semua pelanggan yang dimulai dengan "a" dan panjangnya minimal 3 karakter:
+    SELECT * FROM Customers
+    WHERE CustomerName LIKE 'a__%';
+
+10. Contoh: Kembalikan semua pelanggan yang memiliki "r" di posisi kedua:
+    SELECT * FROM Customers
+    WHERE CustomerName LIKE '_r%';
+
+11. Contoh: Kembalikan semua pelanggan dari Spanyol:
+    SELECT * FROM Customers
+    WHERE Country LIKE 'Spain';

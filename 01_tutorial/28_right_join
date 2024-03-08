@@ -1,0 +1,16 @@
+RIGHT JOIN => mengembalikan semua catatan dari tabel kanan (tabel2), dan catatan yang cocok dari tabel kiri (tabel1). Hasilnya adalah 0 catatan dari sisi kiri, jika tidak ada yang cocok.
+
+SELECT column_name(s)
+FROM table1
+RIGHT JOIN table2
+ON table1.column_name = table2.column_name;
+
+Catatan: Di beberapa database RIGHT JOINdisebut RIGHT OUTER JOIN.
+
+contoh: mengembalikan semua karyawan, dan pesanan apa pun yang mungkin mereka lakukan:
+    SELECT Orders.OrderID, Employees.LastName, Employees.FirstName
+    FROM Orders
+    RIGHT JOIN Employees ON Orders.EmployeeID = Employees.EmployeeID
+    ORDER BY Orders.OrderID;
+
+Catatan: Kata RIGHT JOIN mengembalikan semua catatan dari tabel kanan (Karyawan), meskipun tidak ada kecocokan di tabel kiri (Pesanan).

@@ -1,0 +1,6 @@
+Klausa JOINdigunakan untuk menggabungkan baris dari dua tabel atau lebih, berdasarkan kolom terkait di antara tabel tersebut.
+Berbagai Jenis SQL JOIN:
+    1. (INNER) JOIN: Mengembalikan rekaman yang memiliki nilai yang cocok di kedua tabel
+    2. LEFT (OUTER) JOIN: Mengembalikan semua rekaman dari tabel kiri, dan rekaman yang cocok dari tabel kanan
+    3. RIGHT (OUTER) JOIN: Mengembalikan semua rekaman dari tabel kanan, dan rekaman yang cocok dari tabel kiri
+    4. FULL (OUTER) JOIN: Mengembalikan semua catatan ketika ada kecocokan di tabel kiri atau kanan

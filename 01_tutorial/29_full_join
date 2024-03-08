@@ -1,0 +1,19 @@
+FULL OUTER JOIN => mengembalikan semua catatan ketika ada kecocokan di catatan tabel kiri (tabel1) atau kanan (tabel2).
+
+SELECT column_name(s)
+FROM table1
+FULL OUTER JOIN table2
+ON table1.column_name = table2.column_name
+WHERE condition;
+
+Tip: FULL OUTER JOIN dan FULL JOIN sama.
+Catatan: FULL OUTER JOIN berpotensi mengembalikan kumpulan hasil yang sangat besar!
+
+contoh: memilih semua pelanggan, dan semua pesanan:
+    SELECT Customers.CustomerName, Orders.OrderID
+    FROM Customers
+    FULL OUTER JOIN Orders ON Customers.CustomerID=Orders.CustomerID
+    ORDER BY Customers.CustomerName;
+
+Catatan: FULL OUTER JOIN mengembalikan semua catatan yang cocok dari kedua tabel, baik tabel lainnya cocok atau tidak.
+Jadi, jika ada baris di "Pelanggan" yang tidak cocok dengan "Pesanan", atau jika ada baris di "Pesanan" yang tidak cocok dengan "Pelanggan", baris tersebut juga akan dicantumkan.

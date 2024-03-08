@@ -1,0 +1,43 @@
+Operator BETWEEN => memilih nilai dalam rentang tertentu. Nilainya bisa berupa angka, teks, atau tanggal.
+Operator BETWEEN inklusif: nilai awal dan akhir disertakan.
+
+SELECT column_name(s)
+FROM table_name
+WHERE column_name BETWEEN value1 AND value2;
+
+1. Contoh: Memilih semua produk dengan harga antara 10 dan 20:
+    SELECT * FROM Products
+    WHERE Price BETWEEN 10 AND 20;
+
+2. Contoh: Menampilkan produk di luar jangkauan
+    SELECT * FROM Products
+    WHERE Price NOT BETWEEN 10 AND 20;
+
+3. Contoh: memilih semua produk dengan harga antara 10 dan 20. Selain itu, CategoryID harus berupa 1,2, atau 3:
+    SELECT * FROM Products
+    WHERE Price BETWEEN 10 AND 20
+    AND CategoryID IN (1,2,3);
+
+4. Contoh: memilih semua produk dengan ProductName berdasarkan abjad antara Carnarvon Tigers dan Mozzarella di Giovanni:
+    SELECT * FROM Products
+    WHERE ProductName BETWEEN 'Carnarvon Tigers' AND 'Mozzarella di Giovanni'
+    ORDER BY ProductName;
+
+5. Contoh: memilih semua produk dengan ProductName antara Carnarvon Tigers dan Bumbu Cajun Chef Anton:
+    SELECT * FROM Products
+    WHERE ProductName BETWEEN "Carnarvon Tigers" AND "Chef Anton's Cajun Seasoning"
+    ORDER BY ProductName;
+
+6. Contoh: memilih semua produk dengan ProductName bukan antara Carnarvon Tigers dan Mozzarella di Giovanni:
+    SELECT * FROM Products
+    WHERE ProductName NOT BETWEEN 'Carnarvon Tigers' AND 'Mozzarella di Giovanni'
+    ORDER BY ProductName;
+
+7. Contoh: memilih semua pesanan dengan OrderDate antara '01-Juli-1996' dan '31-Juli-1996':
+    SELECT * FROM Orders
+    WHERE OrderDate BETWEEN #07/01/1996# AND #07/31/1996#;
+
+    atau
+
+    SELECT * FROM Orders
+    WHERE OrderDate BETWEEN '1996-07-01' AND '1996-07-31';

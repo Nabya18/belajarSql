@@ -1,0 +1,62 @@
+Karakter wildcard digunakan untuk menggantikan satu atau lebih karakter dalam sebuah string.
+
+Karakter-karakter wildcard
+    Symbol	    Description
+    %	        Mewakili nol atau lebih karakter
+    _	        Mewakili satu karakter
+    []	        Mewakili karakter apa pun di dalam tanda kurung *
+    ^	        Mewakili karakter apa pun yang tidak ada dalam tanda kurung *
+    -	        Mewakili karakter apa pun dalam rentang yang ditentukan *
+    {}	        Mewakili karakter yang lolos **
+* Tidak didukung di database PostgreSQL dan MySQL.
+** Hanya didukung di database Oracle.
+
+1. Contoh: Kembalikan semua pelanggan yang dimulai dengan huruf 'a':
+    SELECT * FROM Customers
+    WHERE CustomerName LIKE 'a%';
+
+2. Contoh: Kembalikan semua pelanggan yang diakhiri dengan pola 'es':
+    SELECT * FROM Customers
+    WHERE CustomerName LIKE '%es';
+
+3. Contoh: Kembalikan semua pelanggan yang mengandung pola 'mer':
+    SELECT * FROM Customers
+    WHERE CustomerName LIKE '%mer%';
+
+4. Contoh: Kembalikan semua pelanggan dengan Cityawalan karakter apa pun, diikuti dengan "ondon":
+    SELECT * FROM Customers
+    WHERE City LIKE '_ondon';
+
+5. Contoh: Kembalikan semua pelanggan dengan Cityawalan "L", diikuti dengan 3 karakter apa pun, diakhiri dengan "on":
+    SELECT * FROM Customers
+    WHERE City LIKE 'L___on';
+
+6. Contoh: Kembalikan semua pelanggan yang dimulai dengan "b", "s", atau "p":
+    SELECT * FROM Customers
+    WHERE CustomerName LIKE '[bsp]%';
+
+7. Contoh: Kembalikan semua pelanggan yang dimulai dengan "a", "b", "c", "d", "e" atau "f":
+    SELECT * FROM Customers
+    WHERE CustomerName LIKE '[a-f]%';
+
+8. Contoh: Menampilkan semua pelanggan yang dimulai dengan "a" dan panjangnya minimal 3 karakter:
+    SELECT * FROM Customers
+    WHERE CustomerName LIKE 'a__%';
+
+9. Contoh: Kembalikan semua pelanggan yang memiliki "r" di posisi kedua:
+    SELECT * FROM Customers
+    WHERE CustomerName LIKE '_r%';
+
+10. Contoh: Kembalikan semua pelanggan dari Spanyol:
+    SELECT * FROM Customers
+    WHERE Country LIKE 'Spain';
+
+Microsoft Access Database memiliki beberapa wildcard lainnya:
+
+Symbol	    Description	                                                    Example
+*	        Represents zero or more characters	                            bl* finds bl, black, blue, and blob
+?	        Represents a single character	                                h?t finds hot, hat, and hit
+[]	        Represents any single character within the brackets	            h[oa]t finds hot and hat, but not hit
+!	        Represents any character not in the brackets	                h[!oa]t finds hit, but not hot and hat
+-	        Represents any single character within the specified range	    c[a-b]t finds cat and cbt
+#	        Represents any single numeric character	                        2#5 finds 205, 215, 225, 235, 245, 255, 265, 275, 285, and 295

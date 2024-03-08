@@ -1,0 +1,74 @@
+1. Alias SQL digunakan untuk memberi nama sementara pada tabel, atau kolom dalam tabel.
+2. Alias sering digunakan untuk membuat nama kolom lebih mudah dibaca.
+3. Alias hanya ada selama durasi kueri tersebut.
+4. Alias dibuat dengan AS sebagai kata kunci.
+
+Kegunaan Alias:
+    1. Ada lebih dari satu tabel yang terlibat dalam kueri
+    2. Fungsi digunakan dalam kueri
+    3. Nama kolom besar atau tidak terlalu mudah dibaca
+    4. Dua atau lebih kolom digabungkan menjadi satu
+
+Ketika alias digunakan pada kolom:
+    SELECT column_name AS alias_name
+    FROM table_name;
+
+Ketika alias digunakan pada tabel:
+    SELECT column_name(s)
+    FROM table_name AS alias_name;
+
+1. Contoh
+    SELECT CustomerID AS ID
+    FROM Customers;
+
+2. Contoh: melewatkan kata kunci AS dan mendapatkan hasil yang sama:
+    SELECT CustomerID ID
+    FROM Customers;
+
+3. Contoh: membuat dua alias, satu untuk kolom CustomerID dan satu lagi untuk kolom CustomerName:
+    SELECT CustomerID AS ID, CustomerName AS Customer
+    FROM Customers;
+
+4. Contoh: Menggunakan [tanda kurung siku] untuk alias dengan karakter spasi:
+        SELECT ProductName AS [My Great Products]
+        FROM Products;
+
+    atau
+
+    Contoh: Menggunakan "tanda kutip ganda" untuk alias dengan karakter spasi:
+        SELECT ProductName AS "My Great Products"
+        FROM Products;
+
+    Catatan: Beberapa sistem database mengizinkan [] dan "", dan beberapa hanya mengizinkan salah satunya.
+
+5. Contoh: membuat alias bernama "Alamat" yang menggabungkan empat kolom (Alamat, Kode Pos, Kota dan Negara):
+        SELECT CustomerName, Address + ', ' + PostalCode + ' ' + City + ', ' + Country AS Address
+        FROM Customers;
+
+    Catatan: Agar pernyataan SQL di atas berfungsi di MySQL, gunakan yang berikut ini:
+
+    Contoh MySQL:
+        SELECT CustomerName, CONCAT(Address,', ',PostalCode,', ',City,', ',Country) AS Address
+        FROM Customers;
+
+    Catatan: Agar pernyataan SQL di atas berfungsi di Oracle, gunakan yang berikut ini:
+
+    Contoh Oracle:
+        SELECT CustomerName, (Address || ', ' || PostalCode || ' ' || City || ', ' || Country) AS Address
+        FROM Customers;
+
+6. Contoh: menggunakan alias untuk sebuah tabel.
+   Menggunakan lebih dari satu tabel dalam kueri, hal ini dapat membuat pernyataan SQL menjadi lebih pendek.
+    SELECT * FROM Customers AS Persons;
+
+7. Pernyataan SQL berikut memilih semua pesanan dari pelanggan dengan CustomerID=4 (Around the Horn).
+   Kita menggunakan tabel "Pelanggan" dan "Pesanan", dan memberi mereka masing-masing alias tabel "c" dan "o" (Di sini kita menggunakan alias untuk membuat SQL lebih pendek):
+   Contoh:
+       SELECT o.OrderID, o.OrderDate, c.CustomerName
+       FROM Customers AS c, Orders AS o
+       WHERE c.CustomerName='Around the Horn' AND c.CustomerID=o.CustomerID;
+
+   Perbandingan dengan tanpa alias
+       SELECT Orders.OrderID, Orders.OrderDate, Customers.CustomerName
+       FROM Customers, Orders
+       WHERE Customers.CustomerName='Around the Horn' AND Customers.CustomerID=Orders.CustomerID;

@@ -1,0 +1,24 @@
+Operator IN => memungkinkan kita menentukan beberapa nilai dalam sebuah WHEREklausa.
+Operator IN => adalah singkatan untuk berbagai OR kondisi.
+1. Kita juga dapat menggunakan IN subquery di WHERE klausa.
+2. Dengan subquery Kita dapat mengembalikan semua record dari query utama yang ada di hasil subquery.
+
+SELECT column_name(s)
+FROM table_name
+WHERE column_name IN (value1, value2, ...);
+
+1. Contoh: Kembalikan semua pelanggan dari 'Jerman', 'Prancis', atau 'Inggris'
+    SELECT * FROM Customers
+    WHERE Country IN ('Germany', 'France', 'UK');
+
+2. Contoh: Kembalikan semua pelanggan yang BUKAN dari 'Jerman', 'Prancis', atau 'Inggris':
+    SELECT * FROM Customers
+    WHERE Country NOT IN ('Germany', 'France', 'UK');
+
+3. Contoh: Mengembalikan semua pelanggan yang memiliki pesanan di tabel Pesanan :
+    SELECT * FROM Customers
+    WHERE CustomerID IN (SELECT CustomerID FROM Orders);
+
+4. Contoh: Kembalikan semua pelanggan yang BELUM melakukan pemesanan apa pun di tabel Pesanan :
+    SELECT * FROM Customers
+    WHERE CustomerID NOT IN (SELECT CustomerID FROM Orders);

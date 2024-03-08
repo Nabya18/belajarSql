@@ -1,0 +1,27 @@
+AVG() => mengembalikan nilai rata-rata kolom numerik.
+Nilai NULL diabaikan.
+
+SELECT AVG(column_name)
+FROM table_name
+WHERE condition;
+
+contoh: Temukan harga rata-rata semua produk:
+    SELECT AVG(Price)
+    FROM Products;
+
+1. Dengan Klausa Where
+    Contoh: Kembalikan harga rata-rata produk dalam kategori 1:
+        SELECT AVG(Price)
+        FROM Products
+        WHERE CategoryID = 1;
+
+2. Dengan Alias
+    Contoh: Beri nama kolom "harga rata-rata":
+        SELECT AVG(Price) AS [average price]
+        FROM Products;
+
+3. Lebih Tinggi Dari Rata-Rata
+    Untuk membuat daftar semua record dengan harga lebih tinggi dari rata-rata, kita dapat menggunakan fungsi AVG()dalam sub query:
+    Contoh: Kembalikan semua produk dengan harga lebih tinggi dari harga rata-rata:
+        SELECT * FROM Products
+        WHERE price > (SELECT AVG(price) FROM Products);

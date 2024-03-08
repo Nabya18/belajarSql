@@ -1,0 +1,32 @@
+INNER JOIN => memilih rekaman yang memiliki nilai yang cocok di kedua tabel.
+1. menyertakan nama tabel saat menentukan kolom dalam pernyataan SQL.
+2. JOIN dan INNER JOIN akan mengembalikan hasil yang sama.
+    ketika Kita menulis JOIN sebenarnya menulis INNER JOIN.
+
+SELECT column_name(s)
+FROM table1
+INNER JOIN table2
+ON table1.column_name = table2.column_name;
+
+1. Contoh: menggabungkan tabel Produk dengan tabel Kategori, dengan menggunakan CategoryIDfield dari kedua tabel:
+    SELECT ProductID, ProductName, CategoryName
+    FROM Products
+    INNER JOIN Categories ON Products.CategoryID = Categories.CategoryID;
+
+   Catatan: INNER JOIN hanya mengembalikan baris dengan kecocokan di kedua tabel.
+            Artinya, jika Kita memiliki produk tanpa ID Kategori, atau dengan ID Kategori yang tidak ada dalam tabel Kategori, data tersebut tidak akan dikembalikan pada hasil.
+
+2. Contoh: Tentukan nama tabel:
+    SELECT Products.ProductID, Products.ProductName, Categories.CategoryName
+    FROM Products
+    INNER JOIN Categories ON Products.CategoryID = Categories.CategoryID;
+
+   Contoh di atas berfungsi tanpa menentukan nama tabel, karena tidak ada nama kolom tertentu yang ada di kedua tabel.
+   Jika Kita mencoba memasukkannya CategoryIDke dalam SELECT, Kita akan mendapatkan kesalahan
+   jika Kita tidak menentukan nama tabel (karena CategoryID ada di kedua tabel).
+
+3. Contoh: gabungan dari 3 tabel
+    SELECT Orders.OrderID, Customers.CustomerName, Shippers.ShipperName
+    FROM ((Orders
+    INNER JOIN Customers ON Orders.CustomerID = Customers.CustomerID)
+    INNER JOIN Shippers ON Orders.ShipperID = Shippers.ShipperID);
