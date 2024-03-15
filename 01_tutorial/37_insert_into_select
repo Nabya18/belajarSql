@@ -1,0 +1,29 @@
+INSERT INTO SELECT => menyalin data dari satu tabel dan menyisipkannya ke tabel lain.
+INSERT INTO SELECT => mengharuskan tipe data dalam tabel sumber dan target cocok.
+
+Catatan: Catatan yang ada di tabel target tidak terpengaruh.
+
+Salin semua kolom dari satu tabel ke tabel lain:
+INSERT INTO table2
+SELECT * FROM table1
+WHERE condition;
+
+Salin hanya beberapa kolom dari satu tabel ke tabel lain:
+    INSERT INTO table2 (column1, column2, column3, ...)
+    SELECT column1, column2, column3, ...
+    FROM table1
+    WHERE condition;
+
+Contoh:
+Copy “Supplier” ke “Customers” (kolom yang tidak diisi data, akan berisi NULL):
+    INSERT INTO Customers (CustomerName, City, Country)
+    SELECT SupplierName, City, Country FROM Suppliers;
+
+Salin "Pemasok" ke "Pelanggan" (isi semua kolom):
+    INSERT INTO Customers (CustomerName, ContactName, Address, City, PostalCode, Country)
+    SELECT SupplierName, ContactName, Address, City, PostalCode, Country FROM Suppliers;
+
+Salin hanya pemasok Jerman ke "Pelanggan":
+    INSERT INTO Customers (CustomerName, City, Country)
+    SELECT SupplierName, City, Country FROM Suppliers
+    WHERE Country='Germany';

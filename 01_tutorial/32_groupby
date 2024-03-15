@@ -1,0 +1,24 @@
+GROUP BY => mengelompokkan baris yang memiliki nilai yang sama ke dalam baris ringkasan, seperti "temukan jumlah pelanggan di setiap negara".
+GROUP BYsering digunakan dengan fungsi agregat ( COUNT(), MAX(), MIN(), SUM(), AVG()) untuk mengelompokkan kumpulan hasil berdasarkan satu atau lebih kolom.
+
+SELECT column_name(s)
+FROM table_name
+WHERE condition
+GROUP BY column_name(s)
+ORDER BY column_name(s);
+
+contoh mencantumkan jumlah pelanggan di setiap negara:
+    SELECT COUNT(CustomerID), Country
+    FROM Customers
+    GROUP BY Country;
+
+Contoh mencantumkan jumlah pelanggan di setiap negara, diurutkan dari tinggi ke rendah:
+    SELECT COUNT(CustomerID), Country
+    FROM Customers
+    GROUP BY Country
+    ORDER BY COUNT(CustomerID) DESC;
+
+Contoh GROUP BY dengan Join
+    SELECT Shippers.ShipperName, COUNT(Orders.OrderID) AS NumberOfOrders FROM Orders
+    LEFT JOIN Shippers ON Orders.ShipperID = Shippers.ShipperID
+    GROUP BY ShipperName;

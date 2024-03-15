@@ -1,0 +1,79 @@
+Operator ANY dan ALL => memungkinkan Kita melakukan perbandingan antara nilai kolom tunggal dan rentang nilai lainnya.
+
+Operator ANY:
+    1. mengembalikan nilai boolean sebagai hasilnya
+    2. mengembalikan TRUE jika SALAH SATU nilai subkueri memenuhi ketentuan
+    3. ANY berarti kondisi akan bernilai benar jika operasi bernilai benar untuk salah satu nilai dalam rentang tersebut.
+
+Syntax Any
+    SELECT column_name(s)
+    FROM table_name
+    WHERE column_name operator ANY
+      (SELECT column_name
+      FROM table_name
+      WHERE condition);
+
+Operator ALL:
+    1. mengembalikan nilai boolean sebagai hasilnya
+    2. mengembalikan TRUE jika SEMUA nilai subkueri memenuhi kondisi
+    3. digunakan dengan SELECT, WHERE dan HAVING pernyataan
+    4. ALL berarti kondisi akan benar hanya jika operasi tersebut benar untuk semua nilai dalam rentang tersebut.
+
+Syntax All
+    SELECT ALL column_name(s)
+    FROM table_name
+    WHERE condition;
+
+Syntax All dengan WHERE atau HAVING
+    SELECT column_name(s)
+    FROM table_name
+    WHERE column_name operator ALL
+      (SELECT column_name
+      FROM table_name
+      WHERE condition);
+
+Catatan : Operator harus berupa operator perbandingan standar (=, <>, !=, >, >=, <, atau <=).
+
+## ANY
+    Contoh 1.
+    mencantumkan ProductName jika menemukan catatan ANY dalam tabel OrderDetails memiliki Kuantitas sama dengan 10 (ini akan mengembalikan TRUE karena kolom Kuantitas memiliki beberapa nilai 10):
+        SELECT ProductName
+        FROM Products
+        WHERE ProductID = ANY
+          (SELECT ProductID
+          FROM OrderDetails
+          WHERE Quantity = 10);
+
+    Contoh 2.
+    mencantumkan ProductName jika menemukan catatan ANY dalam tabel OrderDetails memiliki Kuantitas lebih besar dari 99 (ini akan mengembalikan TRUE karena kolom Kuantitas memiliki beberapa nilai lebih besar dari 99):
+        SELECT ProductName
+        FROM Products
+        WHERE ProductID = ANY
+          (SELECT ProductID
+          FROM OrderDetails
+          WHERE Quantity > 99);
+
+    Contoh 3.
+    mencantumkan ProductName jika menemukan catatan ANY di tabel OrderDetails memiliki Kuantitas lebih besar dari 1000 (ini akan mengembalikan FALSE karena kolom Kuantitas tidak memiliki nilai lebih besar dari 1000):
+        SELECT ProductName
+        FROM Products
+        WHERE ProductID = ANY
+          (SELECT ProductID
+          FROM OrderDetails
+          WHERE Quantity > 1000);
+
+## ALL
+    Contoh 1.
+    mencantumkan SEMUA nama produk:
+        SELECT ALL ProductName
+        FROM Products
+        WHERE TRUE;
+
+    Contoh 2.
+    mencantumkan ProductName jika ALL catatan dalam tabel OrderDetails memiliki Quantity sama dengan 10. Ini tentu saja akan mengembalikan FALSE karena kolom Quantity memiliki banyak nilai berbeda (tidak hanya nilai 10):
+        SELECT ProductName
+        FROM Products
+        WHERE ProductID = ALL
+          (SELECT ProductID
+          FROM OrderDetails
+          WHERE Quantity = 10);

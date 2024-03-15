@@ -1,0 +1,34 @@
+SQL Stored Procedures for SQL Server
+1. Prosedur tersimpan adalah kode SQL yang telah disiapkan dan dapat Anda simpan, sehingga kode tersebut dapat digunakan kembali berulang kali.
+2. Jadi, jika Anda memiliki kueri SQL yang Anda tulis berulang kali, simpan sebagai prosedur tersimpan, lalu panggil saja untuk menjalankannya.
+3. Anda juga dapat meneruskan parameter ke prosedur tersimpan, sehingga prosedur tersimpan dapat bertindak berdasarkan nilai parameter yang diteruskan.
+
+CREATE PROCEDURE procedure_name
+AS
+sql_statement
+GO;
+
+Jalankan Prosedur Tersimpan
+EXEC procedure_name;
+
+Contoh:
+membuat prosedur tersimpan bernama "SelectAllCustomers" yang memilih semua catatan dari tabel "Pelanggan":
+    CREATE PROCEDURE SelectAllCustomers
+    AS
+    SELECT * FROM Customers
+    GO;
+    EXEC SelectAllCustomers;
+
+membuat prosedur tersimpan yang memilih Pelanggan dari Kota tertentu dari tabel "Pelanggan":
+    CREATE PROCEDURE SelectAllCustomers @City nvarchar(30)
+    AS
+    SELECT * FROM Customers WHERE City = @City
+    GO;
+    EXEC SelectAllCustomers @City = 'London';
+
+membuat prosedur tersimpan yang memilih Pelanggan dari Kota tertentu dengan Kode Pos tertentu dari tabel "Pelanggan":
+    CREATE PROCEDURE SelectAllCustomers @City nvarchar(30), @PostalCode nvarchar(10)
+    AS
+    SELECT * FROM Customers WHERE City = @City AND PostalCode = @PostalCode
+    GO;
+    EXEC SelectAllCustomers @City = 'London', @PostalCode = 'WA1 1DP';

@@ -1,0 +1,46 @@
+Komentar digunakan untuk menjelaskan bagian pernyataan SQL, atau untuk mencegah eksekusi pernyataan SQL.
+Catatan: Komentar tidak didukung di database Microsoft Access!
+
+Komentar Satu Baris
+1. Komentar satu baris dimulai dengan --.
+2. Teks apa pun antara -- dan akhir baris akan diabaikan (tidak akan dieksekusi).
+
+Contoh berikut menggunakan komentar satu baris sebagai penjelasan:
+    -- Select all:
+    SELECT * FROM Customers;
+
+Contoh berikut menggunakan komentar satu baris untuk mengabaikan akhir baris:
+    SELECT * FROM Customers -- WHERE City='Berlin';
+
+Contoh berikut menggunakan komentar satu baris untuk mengabaikan pernyataan:
+    -- SELECT * FROM Customers;
+    SELECT * FROM Products;
+
+
+Komentar Multi-baris
+1. Komentar multi-baris dimulai dengan /*dan diakhiri dengan */.
+2. Teks apa pun antara /* dan */ akan diabaikan.
+
+Contoh berikut menggunakan komentar multi-baris sebagai penjelasannya:
+    /*Select all the columns
+    of all the records
+    in the Customers table:*/
+    SELECT * FROM Customers;
+
+Contoh berikut menggunakan komentar multi-baris untuk mengabaikan banyak pernyataan:
+    /*SELECT * FROM Customers;
+    SELECT * FROM Products;
+    SELECT * FROM Orders;
+    SELECT * FROM Categories;*/
+    SELECT * FROM Suppliers;
+
+Untuk mengabaikan sebagian pernyataan saja, gunakan juga komentar /* */.
+Contoh berikut menggunakan komentar untuk mengabaikan sebagian baris:
+    SELECT CustomerName, /*City,*/ Country FROM Customers;
+
+Contoh berikut menggunakan komentar untuk mengabaikan bagian dari pernyataan:
+    SELECT * FROM Customers WHERE (CustomerName LIKE 'L%'
+    OR CustomerName LIKE 'R%' /*OR CustomerName LIKE 'S%'
+    OR CustomerName LIKE 'T%'*/ OR CustomerName LIKE 'W%')
+    AND Country='USA'
+    ORDER BY CustomerName;

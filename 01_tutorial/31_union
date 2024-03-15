@@ -1,0 +1,38 @@
+Operator UNION => digunakan untuk menggabungkan kumpulan hasil dari dua SELECT pernyataan atau lebih.
+- Operator UNION hanya memilih nilai yang berbeda secara default. Untuk mengizinkan nilai duplikat, gunakan UNION ALL
+- Nama kolom pada kumpulan hasil biasanya sama dengan nama kolom pada SELECT pertama.
+- Syarat menggunakan UNION:
+    1. Setiap pernyataan SELECT di dalamn UNION harus memiliki jumlah kolom yang sama
+    2. Kolom juga harus memiliki tipe data yang serupa
+    3. Kolom-kolom pada setiap SELECT juga harus berada dalam urutan yang sama
+
+Tanpa nilai duplikat
+    SELECT column_name(s) FROM table1
+    UNION
+    SELECT column_name(s) FROM table2;
+
+Dengan Nilai duplikat
+    SELECT column_name(s) FROM table1
+    UNION ALL
+    SELECT column_name(s) FROM table2;
+
+Contoh SQL UNION
+    SELECT City FROM Customers
+    UNION
+    SELECT City FROM Suppliers
+    ORDER BY City;
+
+Contoh SQL UNION with WHERE klausa
+    SELECT City, Country FROM Customers
+    WHERE Country='Germany'
+    UNION
+    SELECT City, Country FROM Suppliers
+    WHERE Country='Germany'
+    ORDER BY City;
+
+Contoh SQL UNION dengan alias
+    SELECT 'Customer' AS Type, ContactName, City, Country
+    FROM Customers
+    UNION
+    SELECT 'Supplier', ContactName, City, Country
+    FROM Suppliers;

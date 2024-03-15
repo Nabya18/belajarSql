@@ -1,0 +1,37 @@
+Fungsi SQL IFNULL(), ISNULL(), COALESCE(), dan NVL()
+
+Pada contoh di bawah, jika salah satu nilai "UnitsOnOrder" adalah NULL, hasilnya akan menjadi NULL.
+    SELECT ProductName, UnitPrice * (UnitsInStock + UnitsOnOrder)
+    FROM Products;
+
+1. MySQL
+Fungsi MySQL IFNULL() => memungkinkan Anda mengembalikan nilai alternatif jika ekspresi adalah NULL:
+    SELECT ProductName, UnitPrice * (UnitsInStock + IFNULL(UnitsOnOrder, 0))
+    FROM Products;
+
+atau menggunakan fungsi COALESCE()
+    SELECT ProductName, UnitPrice * (UnitsInStock + COALESCE(UnitsOnOrder, 0))
+    FROM Products;
+
+2. SQLServer
+Fungsi SQL Server ISNULL() => memungkinkan Anda mengembalikan nilai alternatif ketika ekspresi adalah NULL:
+    SELECT ProductName, UnitPrice * (UnitsInStock + ISNULL(UnitsOnOrder, 0))
+    FROM Products;
+
+atau kita bisa menggunakan fungsinya COALESCE() , seperti ini:
+    SELECT ProductName, UnitPrice * (UnitsInStock + COALESCE(UnitsOnOrder, 0))
+    FROM Products;
+
+3. MS Access
+Fungsi MS Access IsNull() => mengembalikan TRUE (-1) jika ekspresi bernilai nol, jika tidak FALSE (0):
+    SELECT ProductName, UnitPrice * (UnitsInStock + IIF(IsNull(UnitsOnOrder), 0, UnitsOnOrder))
+    FROM Products;
+
+4. Oracle
+Fungsi Oracle NVL()mencapai hasil yang sama:
+    SELECT ProductName, UnitPrice * (UnitsInStock + NVL(UnitsOnOrder, 0))
+    FROM Products;
+
+atau kita bisa menggunakan fungsinya COALESCE() , seperti ini:
+    SELECT ProductName, UnitPrice * (UnitsInStock + COALESCE(UnitsOnOrder, 0))
+    FROM Products;

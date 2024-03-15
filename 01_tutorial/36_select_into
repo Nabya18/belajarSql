@@ -1,0 +1,44 @@
+SELECT INTO => menyalin data dari satu tabel ke tabel baru.
+
+Salin semua kolom ke tabel baru:
+    SELECT *
+    INTO newtable [IN externaldb]
+    FROM oldtable
+    WHERE condition;
+
+Salin hanya beberapa kolom ke dalam tabel baru:
+    SELECT column1, column2, column3, ...
+    INTO newtable [IN externaldb]
+    FROM oldtable
+    WHERE condition;
+
+Tabel baru akan dibuat dengan nama kolom dan tipe seperti yang ditentukan dalam tabel lama. Anda dapat membuat nama kolom baru menggunakan AS klausa.
+
+Contoh:
+membuat salinan cadangan Pelanggan:
+    SELECT * INTO CustomersBackup2017
+    FROM Customers;
+
+menggunakan IN klausa untuk menyalin tabel ke tabel baru di database lain:
+    SELECT * INTO CustomersBackup2017 IN 'Backup.mdb'
+    FROM Customers;
+
+menyalin beberapa kolom ke dalam tabel baru:
+    SELECT CustomerName, ContactName INTO CustomersBackup2017
+    FROM Customers;
+
+menyalin pelanggan Jerman ke dalam tabel baru:
+    SELECT * INTO CustomersGermany
+    FROM Customers
+    WHERE Country = 'Germany';
+
+menyalin data dari lebih dari satu tabel ke dalam tabel baru:
+    SELECT Customers.CustomerName, Orders.OrderID
+    INTO CustomersOrderBackup2017
+    FROM Customers
+    LEFT JOIN Orders ON Customers.CustomerID = Orders.CustomerID;
+
+Tip: SELECT INTO bisa juga digunakan untuk membuat tabel baru yang kosong menggunakan skema lain. Cukup tambahkan WHERE klausa yang menyebabkan kueri tidak mengembalikan data:
+    SELECT * INTO newtable
+    FROM oldtable
+    WHERE 1 = 0;

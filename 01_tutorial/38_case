@@ -1,0 +1,18 @@
+Ekspresi CASE melewati kondisi dan mengembalikan nilai ketika kondisi pertama terpenuhi (seperti pernyataan if-then-else). Jadi, ketika suatu kondisi benar, ia akan berhenti membaca dan mengembalikan hasilnya. Jika tidak ada kondisi yang benar, ia mengembalikan nilai dalam ELSE klausa.
+Jika tidak ada ELSE bagian dan tidak ada kondisi yang benar, ia mengembalikan NULL.
+
+CASE
+    WHEN condition1 THEN result1
+    WHEN condition2 THEN result2
+    WHEN conditionN THEN resultN
+    ELSE result
+END;
+
+mengurutkan pelanggan berdasarkan Kota. Namun, jika Kota adalah NULL, maka pesan berdasarkan Negara:
+    SELECT CustomerName, City, Country
+    FROM Customers
+    ORDER BY
+    (CASE
+        WHEN City IS NULL THEN Country
+        ELSE City
+    END);

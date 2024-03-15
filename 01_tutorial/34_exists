@@ -1,0 +1,17 @@
+Operator EXISTS => digunakan untuk menguji keberadaan record apa pun di subquery.
+Operator EXISTS => mengembalikan TRUE jika subquery mengembalikan satu atau lebih record.
+
+SELECT column_name(s)
+FROM table_name
+WHERE EXISTS
+(SELECT column_name FROM table_name WHERE condition);
+
+Contoh mengembalikan TRUE dan mencantumkan pemasok dengan harga produk kurang dari 20:
+    SELECT SupplierName
+    FROM Suppliers
+    WHERE EXISTS (SELECT ProductName FROM Products WHERE Products.SupplierID = Suppliers.supplierID AND Price < 20);
+
+Contoh mengembalikan TRUE dan mencantumkan pemasok dengan harga produk sama dengan 22:
+    SELECT SupplierName
+    FROM Suppliers
+    WHERE EXISTS (SELECT ProductName FROM Products WHERE Products.SupplierID = Suppliers.supplierID AND Price = 22);
