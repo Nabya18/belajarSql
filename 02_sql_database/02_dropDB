@@ -1,0 +1,7 @@
+DROP DATABASE => digunakan untuk menghapus database SQL yang ada.
+
+DROP DATABASE databasename;
+
+Catatan: Hati-hati sebelum drop database. Menghapus database akan mengakibatkan hilangnya keseluruhan informasi yang tersimpan dalam database!
+
+Tip: Pastikan Kita memiliki hak istimewa admin sebelum menghapus database apa pun. Setelah database dihapus, Kita dapat memeriksanya di daftar database dengan perintah SQL berikut: SHOW DATABASES;

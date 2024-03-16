@@ -1,0 +1,5 @@
+CREATE DATABASE => digunakan untuk membuat database SQL baru.
+
+CREATE DATABASE testDB;
+
+Tip: Pastikan Kita memiliki hak istimewa admin sebelum membuat database apa pun. Setelah database dibuat, Kita dapat memeriksanya di daftar database dengan perintah SQL berikut: SHOW DATABASES;

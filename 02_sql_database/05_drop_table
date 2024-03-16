@@ -1,0 +1,12 @@
+DROP TABLE => digunakan untuk menghapus tabel yang ada di database.
+
+DROP TABLE table_name;
+
+Catatan : Hati-hati sebelum drop table. Menghapus suatu tabel akan mengakibatkan hilangnya seluruh informasi yang tersimpan dalam table tersebut!
+
+Contoh:
+menghilangkan tabel "Pengirim" yang ada:
+    DROP TABLE Shippers;
+
+TRUNCATE TABLE => digunakan untuk menghapus data di dalam tabel, namun bukan tabel itu sendiri.
+    TRUNCATE TABLE table_name;

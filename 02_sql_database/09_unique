@@ -1,0 +1,55 @@
+UNIQUE => memastikan bahwa semua nilai dalam kolom berbeda.
+UNIQUE dan PRIMARY KEY memberikan jaminan keunikan kolom atau kumpulan kolom.
+PRIMARY KEY secara otomatis memiliki UNIQUE.
+
+Kita dapat memiliki banyak UNIQUE per tabel, namun hanya satu PRIMARY KEY per tabel.
+
+Contoh: membuat UNIQUE pada kolom "ID" ketika tabel "Orang" dibuat:
+Akses SQL Server / Oracle / MS:
+    CREATE TABLE Persons (
+        ID int NOT NULL UNIQUE,
+        LastName varchar(255) NOT NULL,
+        FirstName varchar(255),
+        Age int
+    );
+
+MySQL:
+    CREATE TABLE Persons (
+        ID int NOT NULL,
+        LastName varchar(255) NOT NULL,
+        FirstName varchar(255),
+        Age int,
+        UNIQUE (ID)
+    );
+
+membuat UNIQUE dan menentukan constraints pada beberapa kolom
+Akses MySQL / SQL Server / Oracle / MS:
+    CREATE TABLE Persons (
+        ID int NOT NULL,
+        LastName varchar(255) NOT NULL,
+        FirstName varchar(255),
+        Age int,
+        CONSTRAINT UC_Person UNIQUE (ID,LastName)
+    );
+
+Contoh: Constraints SQL UNIQUE pada ALTER TABLE
+    1. membuat UNIQUE batasan pada kolom "ID" saat tabel sudah dibuat
+        Akses MySQL / SQL Server / Oracle / MS:
+            ALTER TABLE Persons
+            ADD UNIQUE (ID);
+
+    2. membuat UNIQUE batasan dan menentukan UNIQUEbatasan pada beberapa kolom
+        Akses MySQL / SQL Server / Oracle / MS:
+            ALTER TABLE Persons
+            ADD CONSTRAINT UC_Person UNIQUE (ID,LastName);
+
+Contoh: Drop Constraints SQL UNIQUE
+menghilangkan UNIQUE Constraints
+
+MySQL:
+    ALTER TABLE Persons
+    DROP INDEX UC_Person;
+
+Akses SQL Server / Oracle / MS:
+    ALTER TABLE Persons
+    DROP CONSTRAINT UC_Person;

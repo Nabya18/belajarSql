@@ -1,0 +1,24 @@
+constraints => digunakan untuk menentukan aturan untuk data dalam tabel.
+Constraint dalam database merupakan batasan nilai yang dapat memastikan hanya data yang sesuai dengan constraint saja yang dapat di input kan dalam tabel.
+
+CREATE TABLE table_name (
+    column1 datatype constraint,
+    column2 datatype constraint,
+    column3 datatype constraint,
+    ....
+);
+
+constraints => digunakan untuk membatasi jenis data yang dapat dimasukkan ke dalam tabel.
+    1. Hal ini memastikan keakuratan dan keandalan data dalam tabel.
+    2. Jika ada pelanggaran antara batasan dan tindakan data, tindakan tersebut dibatalkan.
+    3. constraints dapat berupa tingkat kolom atau tingkat tabel.
+    4. Batasan tingkat kolom berlaku untuk satu kolom, dan batasan tingkat tabel berlaku untuk seluruh tabel.
+
+constraints berikut biasanya digunakan dalam SQL:
+    NOT NULL                - Memastikan bahwa kolom tidak boleh memiliki nilai NULL
+    UNIQUE                  - Memastikan semua nilai dalam kolom berbeda
+    PRIMARY KEY             - Kombinasi a NOT NULL dan UNIQUE. Secara unik mengidentifikasi setiap baris dalam sebuah tabel
+    FOREIGN KEY             - Mencegah tindakan yang akan merusak hubungan antar tabel
+    CHECK                   - Memastikan bahwa nilai dalam kolom memenuhi kondisi tertentu
+    DEFAULT                 - Menetapkan nilai default untuk kolom jika tidak ada nilai yang ditentukan
+    CREATE INDEX            - Digunakan untuk membuat dan mengambil data dari database dengan sangat cepat

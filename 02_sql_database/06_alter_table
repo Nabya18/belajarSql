@@ -1,0 +1,54 @@
+ALTER TABLE => digunakan untuk add, delete, atau modify kolom dalam tabel yang sudah ada.
+ALTER TABLE => juga digunakan untuk add dan drop berbagai batasan pada tabel yang sudah ada.
+
+menambahkan kolom pada tabel, gunakan sintaks berikut:
+    ALTER TABLE table_name
+    ADD column_name datatype;
+
+Untuk menghapus kolom dalam tabel, gunakan sintaks berikut (perhatikan bahwa beberapa sistem database tidak mengizinkan penghapusan kolom):
+    ALTER TABLE table_name
+    DROP COLUMN column_name;
+
+mengganti nama kolom dalam tabel, gunakan sintaks berikut:
+    ALTER TABLE table_name
+    RENAME COLUMN old_name to new_name;
+
+mengganti nama kolom dalam tabel di SQL Server, gunakan sintaks berikut:
+    EXEC sp_rename 'table_name.old_name',  'new_name', 'COLUMN';
+
+mengubah tipe data kolom dalam tabel, gunakan sintaks berikut:
+    1. Akses SQL Server/MS:
+        ALTER TABLE table_name
+        ALTER COLUMN column_name datatype;
+
+    2. SQL/Oracle saya (sebelumnya versi 10G):
+        ALTER TABLE table_name
+        MODIFY COLUMN column_name datatype;
+
+    3. Oracle 10G dan lebih baru:
+        ALTER TABLE table_name
+        MODIFY column_name datatype;
+
+Contoh 1:
+    menambahkan kolom "Email" ke tabel "Pelanggan":
+        ALTER TABLE Customers
+        ADD Email varchar(255);
+
+    Tipe data menentukan tipe data apa yang dapat ditampung kolom.
+
+    menghapus kolom "Email" dari tabel "Pelanggan":
+        ALTER TABLE Customers
+        DROP COLUMN Email;
+
+Contoh 2:
+    menambahkan kolom bernama "Tanggal Lahir" di tabel "Orang".
+        ALTER TABLE Persons
+        ADD DateOfBirth date;
+
+    mengubah tipe data kolom bernama "DateOfBirth" di tabel "Persons".
+        ALTER TABLE Persons
+        ALTER COLUMN DateOfBirth year;
+
+    menghapus kolom bernama "Tanggal Lahir" di tabel "Orang".
+        ALTER TABLE Persons
+        DROP COLUMN DateOfBirth;

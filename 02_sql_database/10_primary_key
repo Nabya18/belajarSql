@@ -1,0 +1,61 @@
+PRIMARY KEY => secara unik mengidentifikasi setiap record dalam tabel.
+1. harus berisi nilai UNIK, dan tidak boleh berisi nilai NULL.
+2. Sebuah tabel hanya dapat memiliki SATU PRIMARY KEY;
+3. di dalam tabel, PRIMARY KEY ini dapat terdiri dari satu atau beberapa kolom (bidang).
+
+PRIMARY KEY pada CREATE TABLE
+Contoh: membuat PRIMARY KEYkolom "ID" ketika tabel "Orang" dibuat:
+    1. MySQL:
+        CREATE TABLE Persons (
+            ID int NOT NULL,
+            LastName varchar(255) NOT NULL,
+            FirstName varchar(255),
+            Age int,
+            PRIMARY KEY (ID)
+        );
+
+    2. Akses SQL Server / Oracle / MS:
+        CREATE TABLE Persons (
+            ID int NOT NULL PRIMARY KEY,
+            LastName varchar(255) NOT NULL,
+            FirstName varchar(255),
+            Age int
+        );
+
+Untuk mengizinkan penamaan batasan PRIMARY KEY, dan untuk menentukan PRIMARY KEYbatasan pada beberapa kolom, gunakan sintaks SQL berikut:
+    Akses MySQL / SQL Server / Oracle / MS:
+    CREATE TABLE Persons (
+        ID int NOT NULL,
+        LastName varchar(255) NOT NULL,
+        FirstName varchar(255),
+        Age int,
+        CONSTRAINT PK_Person PRIMARY KEY (ID,LastName)
+    );
+
+Catatan: Pada contoh di atas hanya ada SATU PRIMARY KEY(PK_Person). Namun, NILAI PRIMARY KEY terdiri dari DUA KOLOM (ID + Nama Belakang).
+
+
+PRIMARY KEY pada ALTER TABLE
+Contoh:
+    1. membuat PRIMARY KEYbatasan pada kolom "ID" saat tabel sudah dibuat
+    Akses MySQL / SQL Server / Oracle / MS:
+        ALTER TABLE Persons
+        ADD PRIMARY KEY (ID);
+
+    2. Untuk mengizinkan penamaan batasan PRIMARY KEY, dan untuk menentukan PRIMARY KEYbatasan pada beberapa kolom, gunakan sintaks SQL berikut:
+    Akses MySQL / SQL Server / Oracle / MS:
+        ALTER TABLE Persons
+        ADD CONSTRAINT PK_Person PRIMARY KEY (ID,LastName);
+
+Catatan: Jika digunakan ALTER TABLE untuk menambahkan PRIMARY KEY, kolom kunci utama harus dinyatakan tidak mengandung nilai NULL (saat tabel pertama kali dibuat).
+
+
+Drop Constraints pada PRIMARY KEY
+Contoh: Untuk menghilangkan PRIMARY KEYbatasan, gunakan SQL berikut:
+    1. MySQL:
+        ALTER TABLE Persons
+        DROP PRIMARY KEY;
+
+    2. Akses SQL Server / Oracle / MS:
+        ALTER TABLE Persons
+        DROP CONSTRAINT PK_Person;

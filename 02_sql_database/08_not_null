@@ -1,0 +1,24 @@
+NOT NULL => memaksa kolom untuk TIDAK menerima nilai NULL.
+Hal ini memaksa bidang untuk selalu berisi nilai, yang berarti Kita tidak dapat menyisipkan catatan baru, atau memperbarui catatan tanpa menambahkan nilai ke bidang ini.
+
+Contoh:
+memastikan bahwa kolom "ID", "LastName", dan "FirstName" TIDAK akan menerima nilai NULL ketika tabel "Persons" dibuat:
+    CREATE TABLE Persons (
+        ID int NOT NULL,
+        LastName varchar(255) NOT NULL,
+        FirstName varchar(255) NOT NULL,
+        Age int
+    );
+
+Syntax
+Akses SQL Server/MS:
+    ALTER TABLE Persons
+    ALTER COLUMN Age int NOT NULL;
+
+SQL/My Oracle (sebelumnya versi 10G):
+    ALTER TABLE Persons
+    MODIFY COLUMN Age int NOT NULL;
+
+Oracle 10G dan lebih baru:
+    ALTER TABLE Persons
+    MODIFY Age int NOT NULL;

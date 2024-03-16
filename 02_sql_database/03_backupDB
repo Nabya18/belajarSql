@@ -1,0 +1,23 @@
+BACKUP DATABASE => digunakan di SQL Server untuk membuat cadangan penuh dari database SQL yang ada.
+
+BACKUP DATABASE databasename
+TO DISK = 'filepath';
+
+Pencadangan diferensial => hanya mencadangkan bagian database yang telah berubah sejak pencadangan database lengkap terakhir.
+    BACKUP DATABASE databasename
+    TO DISK = 'filepath'
+    WITH DIFFERENTIAL;
+
+Contoh
+membuat cadangan penuh dari database "testDB" yang ada ke disk D:
+    BACKUP DATABASE testDB
+    TO DISK = 'D:\backups\testDB.bak';
+
+Tip: Selalu buat cadangan database ke drive yang berbeda dari database sebenarnya. Kemudian, jika Kita mengalami kerusakan disk, Kita tidak akan kehilangan file cadangan beserta databasenya.
+
+membuat cadangan diferensial dari database "testDB":
+    BACKUP DATABASE testDB
+    TO DISK = 'D:\backups\testDB.bak'
+    WITH DIFFERENTIAL;
+
+Tip: Pencadangan diferensial mengurangi waktu pencadangan (karena hanya perubahan yang dicadangkan).
