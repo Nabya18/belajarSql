@@ -1,1 +1,20 @@
-p
+1. Jika Kita ingin situs web Kita dapat menyimpan dan mengambil data dari database, server web Kita harus memiliki akses ke sistem database yang menggunakan bahasa SQL.
+2. Jika server web Kita dihosting oleh Penyedia Layanan Internet (ISP), Kita harus mencari paket hosting SQL.
+3. Database hosting SQL yang paling umum adalah MS SQL Server, Oracle, MySQL, dan MS Access.
+
+A. MS SQL Server
+    1. Microsoft SQL Server adalah perangkat lunak database populer untuk situs web berbasis database dengan lalu lintas tinggi.
+    2. SQL Server adalah sistem database SQL yang sangat kuat, kuat, dan berfitur lengkap.
+
+B. Oracle
+    1. Oracle juga merupakan perangkat lunak database populer untuk situs web berbasis database dengan lalu lintas tinggi.
+    2. Oracle adalah sistem database SQL yang sangat kuat, kuat, dan berfitur lengkap.
+
+C. MySQL
+    1. MySQL juga merupakan perangkat lunak database yang populer untuk situs web.
+    2. MySQL adalah sistem database SQL yang sangat kuat, kuat, dan berfitur lengkap.
+    3. MySQL adalah alternatif murah untuk solusi Microsoft dan Oracle yang mahal.
+
+D. MS Access
+    1. Ketika sebuah situs web hanya membutuhkan database sederhana, Microsoft Access bisa menjadi solusinya.
+    2. MS Access tidak cocok untuk lalu lintas yang sangat tinggi, dan tidak sekuat MySQL, SQL Server, atau Oracle.
