@@ -22,3 +22,24 @@ constraints berikut biasanya digunakan dalam SQL:
     CHECK                   - Memastikan bahwa nilai dalam kolom memenuhi kondisi tertentu
     DEFAULT                 - Menetapkan nilai default untuk kolom jika tidak ada nilai yang ditentukan
     CREATE INDEX            - Digunakan untuk membuat dan mengambil data dari database dengan sangat cepat
+
+
+Contoh study kasus constraints
+Mari kita lihat sebuah studi kasus sederhana tentang penggunaan constraints di sebuah database toko online.
+Dalam database ini, kita akan memiliki tabel untuk produk, pelanggan, dan pesanan.
+Mari kita lihat bagaimana constraints dapat diterapkan untuk memastikan integritas data dan konsistensi referensial:
+
+1. Tabel Produk:
+    Kolom: ID_Produk (Primary Key), Nama_Produk, Harga, dll.
+    Constraint: Primary Key (ID_Produk), mungkin juga ada constraint Unique pada Nama_Produk.
+
+2. Tabel Pelanggan:
+    Kolom: ID_Pelanggan (Primary Key), Nama_Pelanggan, Email, Alamat, dll.
+    Constraint: Primary Key (ID_Pelanggan), mungkin juga ada constraint Unique pada Email.
+
+3. Tabel Pesanan:
+    Kolom: ID_Pesanan (Primary Key), ID_Pelanggan (Foreign Key), ID_Produk (Foreign Key), Jumlah, Tanggal_Pesanan, dll.
+    Constraint:
+        Primary Key (ID_Pesanan),
+        Foreign Key (ID_Pelanggan) REFERENCES Pelanggan(ID_Pelanggan) ON DELETE CASCADE ON UPDATE CASCADE. Ini akan memastikan bahwa jika ada pelanggan yang dihapus dari tabel Pelanggan, pesanan yang terkait juga dihapus.
+        Foreign Key (ID_Produk) REFERENCES Produk(ID_Produk) ON DELETE RESTRICT ON UPDATE CASCADE. Ini memastikan bahwa produk yang terkait dengan pesanan tidak dapat dihapus selama masih ada pesanan yang terkait.

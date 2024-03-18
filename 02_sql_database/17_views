@@ -1,0 +1,53 @@
+VIEW => adalah tabel virtual berdasarkan kumpulan hasil pernyataan SQL.
+1. VIEW berisi baris dan kolom, seperti tabel sebenarnya. Bidang dalam tampilan adalah bidang dari satu atau lebih tabel nyata dalam database.
+2. Kita dapat menambahkan pernyataan dan fungsi SQL ke tampilan dan menyajikan data seolah-olah data tersebut berasal dari satu tabel.
+
+Tampilan dibuat dengan CREATE VIEW pernyataan tersebut.
+    CREATE VIEW view_name AS
+    SELECT column1, column2, ...
+    FROM table_name
+    WHERE condition;
+
+Tampilan dapat diperbarui dengan CREATE OR REPLACE VIEW pernyataan tersebut.
+    CREATE OR REPLACE VIEW view_name AS
+    SELECT column1, column2, ...
+    FROM table_name
+    WHERE condition;
+
+Tampilan dihapus dengan DROP VIEW pernyataan tersebut.
+    DROP VIEW view_name;
+
+Catatan: VIEW selalu menampilkan data terkini! Mesin database membuat ulang tampilan, setiap kali pengguna menanyakannya.
+
+
+Contoh: CREATE VIEW
+1. SQL berikut membuat VIEW yang memperlihatkan semua pelanggan dari Brasil:
+    CREATE VIEW [Brazil Customers] AS
+    SELECT CustomerName, ContactName
+    FROM Customers
+    WHERE Country = 'Brazil';
+
+2. Kita dapat query VIEW di atas sebagai berikut:
+    SELECT * FROM [Brazil Customers];
+
+3. membuat VIEW yang memilih setiap produk di tabel "Produk" dengan harga lebih tinggi dari harga rata-rata:
+    CREATE VIEW [Products Above Average Price] AS
+    SELECT ProductName, Price
+    FROM Products
+    WHERE Price > (SELECT AVG(Price) FROM Products);
+
+4. Kita dapat query VIEW di atas sebagai berikut:
+    SELECT * FROM [Products Above Average Price];
+
+
+Contoh: UPDATE VIEW
+menambahkan kolom "Kota" ke tampilan "Pelanggan Brasil":
+    CREATE OR REPLACE VIEW [Brazil Customers] AS
+    SELECT CustomerName, ContactName, City
+    FROM Customers
+    WHERE Country = 'Brazil';
+
+
+Contoh: DROP VIEW
+menghilangkan tampilan "Pelanggan Brasil":
+    DROP VIEW [Brazil Customers];

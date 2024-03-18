@@ -1,0 +1,28 @@
+Bagian tersulit ketika bekerja dengan tanggal adalah memastikan bahwa format tanggal yang Kita coba masukkan cocok dengan format kolom tanggal di database.
+Selama data Kita hanya berisi bagian tanggal, kueri Anda akan berfungsi seperti yang diharapkan. Namun, jika melibatkan porsi waktu, hal itu menjadi lebih rumit.
+
+Tipe Data Tanggal SQL
+
+1. MySQL => hadir dengan tipe data berikut untuk menyimpan nilai tanggal atau tanggal/waktu dalam database:
+    DATE- format YYYY-MM-DD
+    DATETIME- Format : YYYY-MM-DD HH:MI:SS
+    TIMESTAMP- Format : YYYY-MM-DD HH:MI:SS
+    YEAR- format YYYY atau YY
+
+2. SQL Server => dilengkapi dengan tipe data berikut untuk menyimpan tanggal atau nilai tanggal/waktu dalam database:
+    DATE- format YYYY-MM-DD
+    DATETIME- Format : YYYY-MM-DD HH:MI:SS
+    SMALLDATETIME- Format : YYYY-MM-DD HH:MI:SS
+    TIMESTAMP- format : nomor unik
+
+Catatan: Tipe tanggal dipilih untuk kolom saat Anda membuat tabel baru di database Kita!
+
+
+Contoh: memilih catatan dengan OrderDate "2008-11-11" dari tabel di Orders.
+    SELECT * FROM Orders WHERE OrderDate='2008-11-11'
+
+Jika tabel orders pada OrderDate memiliki komponen waktu (2008-11-11 13:23:44)
+    SELECT * FROM Orders WHERE OrderDate='2008-11-11'
+kita tidak akan mendapatkan hasil apa pun! Ini karena kueri hanya mencari tanggal tanpa porsi waktu.
+
+Tip: Agar pertanyaan Kita tetap sederhana dan mudah dikelola, jangan gunakan komponen waktu dalam tanggal Kita, kecuali Kita harus melakukannya!

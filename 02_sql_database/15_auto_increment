@@ -1,0 +1,70 @@
+AUTO INCREMENT => memungkinkan nomor unik dihasilkan secara otomatis ketika catatan baru dimasukkan ke dalam tabel.
+biasanya ialah PRIMARY KEY
+
+
+Contoh: mendefinisikan kolom "Personid" menjadi PRIMARY KEY AUTO INCREMENT dalam tabel "Persons":
+
+1. MySQL
+    CREATE TABLE Persons (
+        Personid int NOT NULL AUTO_INCREMENT,
+        LastName varchar(255) NOT NULL,
+        FirstName varchar(255),
+        Age int,
+        PRIMARY KEY (Personid)
+    );
+
+    Secara default, nilai awal AUTO_INCREMENTadalah 1, dan akan bertambah 1 untuk setiap record baru.
+
+    Untuk membiarkan AUTO_INCREMENTurutan dimulai dengan nilai lain, gunakan pernyataan SQL berikut:
+        ALTER TABLE Persons AUTO_INCREMENT=100;
+
+    Untuk memasukkan catatan baru ke dalam tabel "Orang", kita TIDAK perlu menentukan nilai untuk kolom "Personid" (nilai unik akan ditambahkan secara otomatis):
+        INSERT INTO Persons (FirstName,LastName)
+        VALUES ('Lars','Monsen');
+
+2. SQL Server
+    CREATE TABLE Persons (
+        Personid int IDENTITY(1,1) PRIMARY KEY,
+        LastName varchar(255) NOT NULL,
+        FirstName varchar(255),
+        Age int
+    );
+
+    Pada contoh di atas, nilai awal IDENTITY adalah 1, dan akan bertambah 1 untuk setiap record baru.
+
+    Tip: Untuk menentukan bahwa kolom "Personid" harus dimulai pada nilai 100 dan bertambah 5, ubah menjadi IDENTITY(100,5).
+
+    Untuk memasukkan catatan baru ke dalam tabel "Orang", kita TIDAK perlu menentukan nilai untuk kolom "Personid" (nilai unik akan ditambahkan secara otomatis):
+        INSERT INTO Persons (FirstName,LastName)
+        VALUES ('Lars','Monsen');
+
+3. MS ACCESS
+    CREATE TABLE Persons (
+        Personid AUTOINCREMENT PRIMARY KEY,
+        LastName varchar(255) NOT NULL,
+        FirstName varchar(255),
+        Age int
+    );
+
+    Secara default, nilai awal AUTOINCREMENT adalah 1, dan akan bertambah 1 untuk setiap record baru.
+
+    Tip: Untuk menentukan bahwa kolom "Personid" harus dimulai pada nilai 10 dan bertambah 5, ubah kenaikan otomatis menjadi AUTOINCREMENT(10,5).
+
+    Untuk memasukkan catatan baru ke dalam tabel "Orang", kita TIDAK perlu menentukan nilai untuk kolom "Personid" (nilai unik akan ditambahkan secara otomatis):
+        INSERT INTO Persons (FirstName,LastName)
+        VALUES ('Lars','Monsen');
+
+4. ORACLE
+    CREATE SEQUENCE seq_person
+    MINVALUE 1
+    START WITH 1
+    INCREMENT BY 1
+    CACHE 10;
+
+    Kode di atas membuat objek urutan yang disebut seq_person, yang dimulai dengan 1 dan akan bertambah 1.
+    Ini juga akan menyimpan hingga 10 nilai kinerja dalam cache.
+    Opsi cache menentukan berapa banyak nilai urutan yang akan disimpan dalam memori untuk akses lebih cepat.
+
+    Untuk memasukkan record baru ke dalam tabel "Persons", kita harus menggunakan fungsi nextval (fungsi ini mengambil nilai berikutnya dari urutan seq_person):
+        INSERT INTO Persons (Personid,FirstName,LastName)
+        VALUES (seq_person.nextval,'Lars','Monsen');

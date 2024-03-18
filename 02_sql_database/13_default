@@ -1,0 +1,62 @@
+DEFAULT => digunakan untuk menetapkan nilai default untuk kolom.
+Nilai default akan ditambahkan ke semua catatan baru, jika tidak ada nilai lain yang ditentukan.
+
+DEFAULT pada CREATE TABEL
+contoh: menetapkan DEFAULT nilai untuk kolom "CITY" ketika tabel "Orang" dibuat:
+My SQL / SQL Server / Oracle / MS Access:
+CREATE TABLE Persons (
+    ID int NOT NULL,
+    LastName varchar(255) NOT NULL,
+    FirstName varchar(255),
+    Age int,
+    City varchar(255) DEFAULT 'Sandnes'
+);
+
+
+contoh kasus:
+Jika kita menyisipkan baris ke dalam tabel Orders tanpa memberikan nilai untuk kolom OrderDate, maka nilai OrderDate akan diisi otomatis dengan tanggal saat itu.
+Ini membantu memastikan data tanggal yang akurat selalu ada di kolom OrderDate tanpa perlu menyediakan nilainya secara eksplisit setiap kali menyisipkan baris baru.
+
+DEFAULT juga dapat digunakan untuk memasukkan nilai sistem, dengan menggunakan fungsi seperti : GETDATE()
+    CREATE TABLE Orders (
+        ID int NOT NULL,
+        OrderNumber int NOT NULL,
+        OrderDate date DEFAULT GETDATE()
+    );
+
+
+DEFAULT pada ALTER TABEL
+membuat DEFAULT batasan pada kolom "City" saat tabel sudah dibuat, gunakan SQL berikut:
+
+1. MySQL:
+    ALTER TABLE Persons
+    ALTER City SET DEFAULT 'Sandnes';
+
+2. SQLServer:
+    ALTER TABLE Persons
+    ADD CONSTRAINT df_City
+    DEFAULT 'Sandnes' FOR City;
+
+3. Akses MS:
+    ALTER TABLE Persons
+    ALTER COLUMN City SET DEFAULT 'Sandnes';
+
+4. ORACLE:
+    ALTER TABLE Persons
+    MODIFY City DEFAULT 'Sandnes';
+
+
+DROP DEFAULT CONSTRAINTS
+Untuk menghilangkan DEFAULTbatasan, gunakan SQL berikut:
+
+1. MySQL:
+    ALTER TABLE Persons
+    ALTER City DROP DEFAULT;
+
+2. Akses SQL Server / Oracle / MS:
+    ALTER TABLE Persons
+    ALTER COLUMN City DROP DEFAULT;
+
+3. SQLServer:
+    ALTER TABLE Persons
+    ALTER COLUMN City DROP DEFAULT;

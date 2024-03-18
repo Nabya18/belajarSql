@@ -1,0 +1,53 @@
+FOREIGN KEY => digunakan untuk mencegah tindakan yang akan merusak hubungan antar tabel.
+FOREIGN KEY => adalah bidang (atau kumpulan bidang) dalam satu tabel, yang mengacu pada PRIMARY KEYtabel lain.
+Tabel dengan FOREIGN KEY disebut tabel anak, dan tabel dengan kunci utama disebut tabel referensi atau PRIMARY KEY.
+
+Contoh: SQL FOREIGN KEY pada CREATE TABLE
+Membuat FOREIGN KEY kolom "PersonID" ketika tabel "Pesanan" dibuat:
+1. MySQL
+    CREATE TABLE Orders (
+        OrderID int NOT NULL,
+        OrderNumber int NOT NULL,
+        PersonID int,
+        PRIMARY KEY (OrderID),
+        FOREIGN KEY (PersonID) REFERENCES Persons(PersonID)
+    );
+
+2. Akses SQL Server / Oracle / MS:
+    CREATE TABLE Orders (
+        OrderID int NOT NULL PRIMARY KEY,
+        OrderNumber int NOT NULL,
+        PersonID int FOREIGN KEY REFERENCES Persons(PersonID)
+    );
+
+Untuk mengizinkan penamaan batasan FOREIGN KEY, dan untuk menentukan FOREIGN KEYbatasan pada beberapa kolom, gunakan sintaks SQL berikut:
+Akses MySQL / SQL Server / Oracle / MS:
+    CREATE TABLE Orders (
+        OrderID int NOT NULL,
+        OrderNumber int NOT NULL,
+        PersonID int,
+        PRIMARY KEY (OrderID),
+        CONSTRAINT FK_PersonOrder FOREIGN KEY (PersonID)
+        REFERENCES Persons(PersonID)
+    );
+
+Contoh: SQL FOREIGN KEY pada ALTER TABLE
+membuat FOREIGN KEYbatasan pada kolom "PersonID" ketika tabel "Pesanan" sudah dibuat, gunakan SQL berikut:
+Akses MySQL / SQL Server / Oracle / MS:
+    ALTER TABLE Orders
+    ADD FOREIGN KEY (PersonID) REFERENCES Persons(PersonID);
+
+mengizinkan penamaan batasan FOREIGN KEY, dan untuk menentukan FOREIGN KEYbatasan pada beberapa kolom, gunakan sintaks SQL berikut:
+Akses MySQL / SQL Server / Oracle / MS:
+    ALTER TABLE Orders
+    ADD CONSTRAINT FK_PersonOrder
+    FOREIGN KEY (PersonID) REFERENCES Persons(PersonID);
+
+DROP a FOREIGN KEY Constraint
+    MySQL:
+        ALTER TABLE Orders
+        DROP FOREIGN KEY FK_PersonOrder;
+
+    SQL Server / Oracle / MS Access:
+        ALTER TABLE Orders
+        DROP CONSTRAINT FK_PersonOrder;

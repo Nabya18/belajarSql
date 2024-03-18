@@ -1,0 +1,50 @@
+CREATE INDEX => digunakan untuk membuat indeks dalam tabel.
+Indeks digunakan untuk mengambil data dari database lebih cepat dibandingkan sebaliknya.
+Pengguna tidak dapat melihat indeks, mereka hanya digunakan untuk mempercepat pencarian/query
+
+Catatan: Memperbarui tabel dengan indeks memerlukan waktu lebih lama dibandingkan memperbarui tabel tanpa indeks (karena indeks juga memerlukan pembaruan). Jadi, hanya buat indeks pada kolom yang sering dicari.
+
+
+Syntax: Membuat indeks pada tabel. Nilai duplikat diperbolehkan:
+    CREATE INDEX index_name
+    ON table_name (column1, column2, ...);
+
+Syntax: Membuat indeks unik pada tabel. Nilai duplikat tidak diperbolehkan:
+    CREATE UNIQUE INDEX index_name
+    ON table_name (column1, column2, ...);
+
+Catatan: Sintaks untuk membuat indeks berbeda-beda di setiap database. Oleh karena itu: Periksa sintaks untuk membuat indeks di database Kita.
+
+
+Contoh:
+1. membuat indeks bernama "idx_lastname" pada kolom "LastName" di tabel "Persons":
+    CREATE INDEX idx_lastname
+    ON Persons (LastName);
+
+2. membuat indeks pada kombinasi kolom
+    CREATE INDEX idx_pname
+    ON Persons (LastName, FirstName);
+
+
+DROP INDEX
+DROP INDEX => digunakan untuk menghapus indeks dalam sebuah tabel.
+1. Akses MS:
+    DROP INDEX index_name ON table_name;
+
+2. SQLServer:
+    DROP INDEX table_name.index_name;
+
+3. DB2/ORACLE:
+    DROP INDEX index_name;
+
+4. MySQL:
+    ALTER TABLE table_name
+    DROP INDEX index_name;
+
+
+Contoh kasus
+Dalam aplikasi database toko online dengan jutaan produk, pencarian berdasarkan nama produk menjadi krusial.
+Membuat indeks pada kolom Nama_Produk akan mempercepat pencarian tersebut.
+Dengan indeks ini, basis data dapat langsung mencocokkan kriteria pencarian tanpa harus memeriksa setiap baris, mengurangi waktu operasi dan meningkatkan responsivitas aplikasi.
+
+    CREATE INDEX idx_nama_produk ON Produk(Nama_Produk);

@@ -1,0 +1,3 @@
+Injeksi SQL => adalah teknik injeksi kode yang mungkin merusak database.
+1. Injeksi SQL adalah salah satu teknik peretasan web yang paling umum.
+2. Injeksi SQL adalah penempatan kode berbahaya dalam pernyataan SQL, melalui input halaman web.
