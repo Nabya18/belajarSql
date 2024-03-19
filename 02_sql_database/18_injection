@@ -1,3 +1,108 @@
 Injeksi SQL => adalah teknik injeksi kode yang mungkin merusak database.
 1. Injeksi SQL adalah salah satu teknik peretasan web yang paling umum.
 2. Injeksi SQL adalah penempatan kode berbahaya dalam pernyataan SQL, melalui input halaman web.
+
+SQL di Halaman Web
+1. Injeksi SQL biasanya terjadi ketika Kita meminta input dari user, seperti username/userid, dan alih-alih nama/id
+2. User memberikan kita SQL statement dan tanpa disadari jalan di database kita
+
+Contoh:
+berikut yang membuat SELECTpernyataan dengan menambahkan variabel (txtUserId) ke string yang dipilih. Variabel diambil dari input user (getRequestString):
+    txtUserId = getRequestString("UserId");
+    txtSQL = "SELECT * FROM Users WHERE UserId = " + txtUserId;
+
+
+A. Injeksi SQL Berdasarkan 1=1 Selalu Benar
+    1. Tujuan awal dari kode ini adalah untuk membuat pernyataan SQL untuk memilih user, dengan id user tertentu.
+    2. Jika tidak ada yang mencegah user memasukkan input yang "salah", pengguna dapat memasukkan beberapa input "pintar" seperti ini:
+            user ID: 105 OR 1=1
+        Kemudian, pernyataan SQL akan terlihat seperti ini:
+            SELECT * FROM Users WHERE UserId = 105 OR 1=1;
+        - SQL di atas valid dan akan mengembalikan SEMUA baris dari tabel "user", karena OR 1=1 selalu BENAR.
+        - Bagaimana jika tabel "Pengguna" berisi nama dan kata sandi?
+        Pernyataan SQL di atas hampir sama dengan ini:
+            SELECT UserId, Name, Password FROM Users WHERE UserId = 105 or 1=1;
+
+    Seorang hacker mungkin mendapatkan akses ke semua nama pengguna dan kata sandi dalam database, hanya dengan memasukkan 105 OR 1=1 ke dalam kolom input.
+
+
+B. Injeksi SQL Berdasarkan ""="" Selalu Benar
+    contoh login pengguna pada situs web:
+        uName = getRequestString("username");
+        uPass = getRequestString("userpassword");
+
+        sql = 'SELECT * FROM Users WHERE Name ="' + uName + '" AND Pass ="' + uPass + '"'
+
+    Hasil
+        SELECT * FROM Users WHERE Name ="John Doe" AND Pass ="myPass"
+
+    Seorang hacker mungkin mendapatkan akses ke nama pengguna dan kata sandi dalam database hanya dengan memasukkan " OR ""=" ke dalam kotak teks nama pengguna atau kata sandi:
+
+    Kode di server akan membuat pernyataan SQL yang valid seperti ini:
+        SELECT * FROM Users WHERE Name ="" or ""="" AND Pass ="" or ""=""
+
+    SQL di atas valid dan akan mengembalikan semua baris dari tabel "user", karena OR ""="" selalu BENAR.
+
+
+C. Injeksi SQL Berdasarkan Pernyataan SQL Batch
+    1. Sebagian besar database mendukung pernyataan SQL batch.
+    2. Kumpulan pernyataan SQL adalah sekelompok dua atau lebih pernyataan SQL, dipisahkan oleh titik koma.
+    3. Pernyataan SQL di bawah ini akan mengembalikan semua baris dari tabel "Pengguna", lalu menghapus tabel "Pemasok".
+        SELECT * FROM Users; DROP TABLE Suppliers
+
+    Lihatlah contoh berikut:
+        txtUserId = getRequestString("UserId");
+        txtSQL = "SELECT * FROM Users WHERE UserId = " + txtUserId;
+
+    dan input berikut:
+        user ID: 105; DROP TABLE Suppliers
+
+    Pernyataan SQL yang valid akan terlihat seperti ini:
+        SELECT * FROM Users WHERE UserId = 105; DROP TABLE Suppliers;
+
+
+Gunakan Parameter SQL untuk Perlindungan
+    1. Untuk melindungi situs web dari injeksi SQL, Kita dapat menggunakan parameter SQL.
+    2. Parameter SQL adalah nilai yang ditambahkan ke kueri SQL pada waktu eksekusi, dengan cara yang terkontrol.
+        ASP.NET Razor contoh:
+            txtUserId = getRequestString("UserId");
+            txtSQL = "SELECT * FROM Users WHERE UserId = @0";
+            db.Execute(txtSQL,txtUserId);
+
+        Perhatikan bahwa parameter direpresentasikan dalam pernyataan SQL dengan penanda @.
+        Mesin SQL memeriksa setiap parameter untuk memastikan bahwa parameter tersebut benar untuk kolomnya dan diperlakukan secara harfiah, dan bukan sebagai bagian dari SQL yang akan dieksekusi.
+
+        Contoh lain:
+            txtNam = getRequestString("CustomerName");
+            txtAdd = getRequestString("Address");
+            txtCit = getRequestString("City");
+            txtSQL = "INSERT INTO Customers (CustomerName,Address,City) Values(@0,@1,@2)";
+            db.Execute(txtSQL,txtNam,txtAdd,txtCit);
+
+        Contoh:
+        berikut menunjukkan cara membuat kueri berparameter dalam beberapa bahasa web umum.
+        a. SELECT STATEMENT IN ASP.NET:
+            txtUserId = getRequestString("UserId");
+            sql = "SELECT * FROM Customers WHERE CustomerId = @0";
+            command = new SqlCommand(sql);
+            command.Parameters.AddWithValue("@0",txtUserId);
+            command.ExecuteReader();
+
+        b. INSERT INTO STATEMENT IN ASP.NET:
+            txtNam = getRequestString("CustomerName");
+            txtAdd = getRequestString("Address");
+            txtCit = getRequestString("City");
+            txtSQL = "INSERT INTO Customers (CustomerName,Address,City) Values(@0,@1,@2)";
+            command = new SqlCommand(txtSQL);
+            command.Parameters.AddWithValue("@0",txtNam);
+            command.Parameters.AddWithValue("@1",txtAdd);
+            command.Parameters.AddWithValue("@2",txtCit);
+            command.ExecuteNonQuery();
+
+        c. INSERT INTO STATEMENT IN PHP:
+            $stmt = $dbh->prepare("INSERT INTO Customers (CustomerName,Address,City)
+            VALUES (:nam, :add, :cit)");
+            $stmt->bindParam(':nam', $txtNam);
+            $stmt->bindParam(':add', $txtAdd);
+            $stmt->bindParam(':cit', $txtCit);
+            $stmt->execute();
